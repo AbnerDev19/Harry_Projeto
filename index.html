@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas de Canto | Professor Harry</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+         :root {
+            --primary: #5e17eb;
+            --secondary: #8e2de2;
+            --bg: #f4f6fb;
+            --white: #fff;
+            --text: #333;
+            --muted: #666;
+            --green: #25D366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        /* HERO */
+        
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 0 0 40px 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: .95;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: .3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05)
+        }
+        /* VIDEO */
+        
+        .video-section {
+            max-width: 900px;
+            margin: -120px auto 4rem;
+            padding: 0 1.5rem;
+        }
+        
+        .video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none
+        }
+        /* SECTIONS */
+        
+        section {
+            padding: 4rem 1.5rem
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+        /* CARDS */
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            transition: .3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px)
+        }
+        
+        .icon {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem
+        }
+        
+        .card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .card ul li {
+            padding-left: 1.5rem;
+            margin-bottom: .5rem;
+            position: relative;
+        }
+        
+        .card ul li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        /* PROFILE */
+        
+        .profile {
+            text-align: center;
+            background: linear-gradient(135deg, #ede7ff, #f9f6ff);
+        }
+        
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--white);
+        }
+        /* FAQ */
+        
+        .faq {
+            background: var(--white);
+        }
+        
+        .accordion {
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        .item {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: .3s;
+            color: var(--muted);
+        }
+        
+        .answer p {
+            padding-bottom: 1.5rem
+        }
+        /* FOOTER */
+        
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+        /* WHATSAPP */
+        
+        .whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--green);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+            transition: .3s;
+        }
+        
+        .whatsapp:hover {
+            transform: scale(1.1)
+        }
+        
+        @media(max-width:480px) {
+            .hero h1 {
+                font-size: 2rem
+            }
+            .title {
+                font-size: 1.8rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div>
+            <h1>Desperte o Poder da Sua Voz</h1>
+            <p>Aulas de canto e teclado com metodologia moderna, prática e transformadora.</p>
+            <a class="btn" href="https://wa.me/5500000000000">Quero começar</a>
+        </div>
+    </header>
+
+    <!-- VIDEO -->
+    <div class="video-section">
+        <div class="video">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- CURSOS -->
+    <section>
+        <div class="container">
+            <h2 class="title">O Que Você Vai Aprender</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="icon"><i class="fas fa-microphone"></i></div>
+                    <h3>Canto para Iniciantes</h3>
+                    <ul>
+                        <li>Respiração correta</li>
+                        <li>Afinação e apoio</li>
+                        <li>Saúde vocal</li>
+                        <li>Repertório prático</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="icon"><i class="fas fa-music"></i></div>
+                    <h3>Teclado para Professores</h3>
+                    <ul>
+                        <li>Acordes e inversões</li>
+                        <li>Acompanhamento</li>
+                        <li>Escalas vocais</li>
+                        <li>Harmonia funcional</li>
+                    </ul>
+                </div>
+
+                <div class="card profile">
+                    <img src="https://via.placeholder.com/150" alt="Professor Harry">
+                    <h3>Professor Harry</h3>
+                    <p>Regente de coral e educador musical.</p>
+                    <p><em>"Ensinar música é transformar vidas."</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="title">Dúvidas Frequentes</h2>
+
+            <div class="accordion">
+                <div class="item">
+                    <button class="question">Para quem é o curso?<i class="fas fa-chevron-down"></i></button>
+                    <div class="answer">
+                        <p>Para iniciantes e professores de canto que desejam evoluir.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <button class="question">As aulas são online?<i class="fas fa-chevron-down"></i></button>
+                    <div class="answer">
+                        <p>Sim, online ao vivo e também presenciais.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <button class="question">Preciso de teclado?<i class="fas fa-chevron-down"></i></button>
+                    <div class="answer">
+                        <p>Somente para o curso de teclado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Professor Harry • Todos os direitos reservados</p>
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/5500000000000" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.querySelectorAll('.question').forEach(q => {
+            q.onclick = () => {
+                const a = q.nextElementSibling;
+                a.style.maxHeight = a.style.maxHeight ? null : a.scrollHeight + 'px';
+            }
+        })
+    </script>
+
+</body>
+
+</html>
