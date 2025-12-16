@@ -6,70 +6,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aulas de Canto | Professor Harry</title>
 
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
          :root {
+            /* Variáveis Padrão (Light Mode) */
             --primary: #5e17eb;
             --secondary: #8e2de2;
             --bg: #f4f6fb;
-            --white: #fff;
-            --text: #333;
-            --muted: #666;
+            --surface: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border: #e0e0e0;
             --green: #25D366;
+            --hero-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+            --hero-text: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --gradient-text: none;
+        }
+        /* DARK MODE - Google AI Style */
+        
+        body.dark-mode {
+            --primary: #d7aefb;
+            /* Roxo pastel claro para contraste */
+            --secondary: #a8c7fa;
+            /* Azul claro Google */
+            --bg: #131314;
+            /* Fundo quase preto (Google Dark) */
+            --surface: #1E1F20;
+            /* Cinza escuro para cards */
+            --text-main: #E3E3E3;
+            /* Texto quase branco */
+            --text-muted: #9aa0a6;
+            /* Cinza médio */
+            --border: #3c4043;
+            /* Bordas sutis */
+            --hero-bg: #131314;
+            /* Hero escuro */
+            --hero-text: #E3E3E3;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            /* Gradiente estilo "Gemini" para títulos */
+            --gradient-text: linear-gradient(90deg, #8ab4f8, #c58af9, #f28b82);
         }
         
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
+        }
+        /* THEME TOGGLE BUTTON */
+        
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .theme-switch:hover {
+            background: var(--border);
         }
         /* HERO */
         
         .hero {
             min-height: 90vh;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
+            background: var(--hero-bg);
+            color: var(--hero-text);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 2rem;
             border-radius: 0 0 40px 40px;
+            position: relative;
         }
         
         .hero h1 {
-            font-size: 2.6rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+        /* Efeito especial no título em Dark Mode */
+        
+        body.dark-mode .hero h1 {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
         
         .hero p {
             max-width: 600px;
             margin: 0 auto 2rem;
             opacity: .95;
+            font-size: 1.1rem;
+            color: var(--hero-text);
+        }
+        
+        body.dark-mode .hero p {
+            color: var(--text-muted);
         }
         
         .btn {
             display: inline-block;
-            background: var(--white);
+            background: var(--surface);
             color: var(--primary);
-            padding: 14px 36px;
+            padding: 16px 40px;
             border-radius: 50px;
             font-weight: 700;
             text-decoration: none;
             transition: .3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .btn {
+            background: var(--primary);
+            color: #000;
+            /* Texto preto no botão roxo claro para contraste */
         }
         
         .btn:hover {
-            transform: scale(1.05)
+            transform: scale(1.05);
         }
         /* VIDEO */
         
@@ -77,25 +155,28 @@
             max-width: 900px;
             margin: -120px auto 4rem;
             padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
         }
         
         .video {
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+            box-shadow: var(--shadow);
+            border: 4px solid var(--surface);
         }
         
         iframe {
             width: 100%;
             height: 100%;
-            border: none
+            border: none;
         }
         /* SECTIONS */
         
         section {
-            padding: 4rem 1.5rem
+            padding: 4rem 1.5rem;
         }
         
         .container {
@@ -109,6 +190,10 @@
             color: var(--primary);
             margin-bottom: 3rem;
         }
+        
+        body.dark-mode .title {
+            color: var(--text-main);
+        }
         /* CARDS */
         
         .grid {
@@ -118,48 +203,80 @@
         }
         
         .card {
-            background: var(--white);
+            background: var(--surface);
             padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
             transition: .3s;
+            border: 1px solid transparent;
+        }
+        
+        body.dark-mode .card {
+            border: 1px solid var(--border);
         }
         
         .card:hover {
-            transform: translateY(-8px)
+            transform: translateY(-8px);
         }
         
         .icon {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(142, 45, 226, 0.1);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        body.dark-mode .icon {
+            background: rgba(215, 174, 251, 0.1);
+            color: var(--primary);
         }
         
         .card h3 {
-            margin-bottom: 1rem
+            margin-bottom: 1rem;
+            color: var(--text-main);
         }
         
         .card ul {
             list-style: none;
             margin-top: 1rem;
+            color: var(--text-muted);
         }
         
         .card ul li {
-            padding-left: 1.5rem;
-            margin-bottom: .5rem;
+            padding-left: 1.8rem;
+            margin-bottom: .8rem;
             position: relative;
         }
         
         .card ul li::before {
-            content: "✔";
+            content: "\f00c";
+            /* FontAwesome Check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
             left: 0;
             color: var(--secondary);
+        }
+        
+        body.dark-mode .card ul li::before {
+            color: var(--primary);
         }
         /* PROFILE */
         
         .profile {
             text-align: center;
+            /* No dark mode removemos o gradiente do card de perfil para manter consistência */
+            background: var(--surface);
+        }
+        /* Apenas no Light mode o perfil tem gradiente */
+        
+        body:not(.dark-mode) .profile {
             background: linear-gradient(135deg, #ede7ff, #f9f6ff);
         }
         
@@ -169,12 +286,24 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 1rem;
-            border: 4px solid var(--white);
+            border: 4px solid var(--bg);
+        }
+        
+        .profile p {
+            color: var(--text-muted);
         }
         /* FAQ */
         
         .faq {
-            background: var(--white);
+            background: var(--surface);
+            border-radius: 40px 40px 0 0;
+            margin-top: 2rem;
+        }
+        
+        body.dark-mode .faq {
+            background: var(--bg);
+            /* No dark mode o fundo continua escuro */
+            border-top: 1px solid var(--border);
         }
         
         .accordion {
@@ -183,7 +312,7 @@
         }
         
         .item {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--border);
         }
         
         .question {
@@ -196,6 +325,10 @@
             display: flex;
             justify-content: space-between;
             cursor: pointer;
+            color: var(--text-main);
+        }
+        
+        .question i {
             color: var(--primary);
         }
         
@@ -203,19 +336,20 @@
             max-height: 0;
             overflow: hidden;
             transition: .3s;
-            color: var(--muted);
+            color: var(--text-muted);
         }
         
         .answer p {
-            padding-bottom: 1.5rem
+            padding-bottom: 1.5rem;
         }
         /* FOOTER */
         
         footer {
-            background: var(--primary);
-            color: var(--white);
+            background: var(--surface);
+            color: var(--text-muted);
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
         }
         /* WHATSAPP */
         
@@ -235,18 +369,19 @@
             text-decoration: none;
             box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
             transition: .3s;
+            z-index: 100;
         }
         
         .whatsapp:hover {
-            transform: scale(1.1)
+            transform: scale(1.1);
         }
         
         @media(max-width:480px) {
             .hero h1 {
-                font-size: 2rem
+                font-size: 2rem;
             }
             .title {
-                font-size: 1.8rem
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -254,7 +389,10 @@
 
 <body>
 
-    <!-- HERO -->
+    <button class="theme-switch" id="theme-toggle" aria-label="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <header class="hero">
         <div>
             <h1>Desperte o Poder da Sua Voz</h1>
@@ -263,14 +401,12 @@
         </div>
     </header>
 
-    <!-- VIDEO -->
     <div class="video-section">
         <div class="video">
             <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- CURSOS -->
     <section>
         <div class="container">
             <h2 class="title">O Que Você Vai Aprender</h2>
@@ -302,13 +438,13 @@
                     <img src="https://via.placeholder.com/150" alt="Professor Harry">
                     <h3>Professor Harry</h3>
                     <p>Regente de coral e educador musical.</p>
+                    <br>
                     <p><em>"Ensinar música é transformar vidas."</em></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq">
         <div class="container">
             <h2 class="title">Dúvidas Frequentes</h2>
@@ -338,7 +474,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p>© 2024 Professor Harry • Todos os direitos reservados</p>
     </footer>
@@ -348,12 +483,47 @@
     </a>
 
     <script>
+        // FAQ Functionality
         document.querySelectorAll('.question').forEach(q => {
             q.onclick = () => {
                 const a = q.nextElementSibling;
+                // Fecha outros abertos (opcional, estilo accordion estrito)
+                document.querySelectorAll('.answer').forEach(el => {
+                    if (el !== a) el.style.maxHeight = null;
+                });
+
                 a.style.maxHeight = a.style.maxHeight ? null : a.scrollHeight + 'px';
+
+                // Gira o ícone
+                const icon = q.querySelector('i');
+                icon.style.transform = a.style.maxHeight ? 'rotate(180deg)' : 'rotate(0deg)';
+                icon.style.transition = '0.3s';
             }
         })
+
+        // Dark Mode Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const icon = toggleBtn.querySelector('i');
+        const body = document.body;
+
+        // Verifica preferência do sistema ou anterior
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
     </script>
 
 </body>
